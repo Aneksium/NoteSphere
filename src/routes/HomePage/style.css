@@ -1,0 +1,268 @@
+:root {
+    --base-purple: rgb(173, 74, 219);
+    --hover-purple: rgb(113, 54, 141);
+}
+#navSpace {
+    height: 36px;
+    width: 100%;
+}
+#homeCont {
+    width: 100vw;
+    height: calc(100vh - 36px);
+    display: flex;
+    flex-direction: row;
+}
+#boardMenu {
+    width: 16rem;
+    height: 100%;
+    background-color: rgb(25, 25, 25);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    gap: 1rem;
+}
+#boardMenHead {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 2rem; padding-right: 2rem;
+}
+.genTitle {
+    font-family: 'Inconsolata', monospace;
+    font-size: 25px;
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.75);
+}
+.genSubTitle {
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+    box-sizing: border-box;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+#newBoardBtn {
+    padding: 0.4rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background: var(--base-purple);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    box-shadow: rgba(0, 0, 0, 0.75) 3px 3px 5px;
+}
+#newBoardBtn:hover {
+    background-color: var(--hover-purple);
+    transition: background 200ms, color 200ms;
+    color: rgba(255, 255, 255, 0.5);
+}
+#boardMenBtnCont {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+.boardMenBtn {
+    height: 2.5rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-family: 'Inconsolata', monospace;
+    font-size: 20px;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 1rem;
+}
+.boardMenBtn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+#home {
+    width: calc(100vw - 16rem);
+    max-height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    gap: calc(((100vw - 6rem) - 13*8rem) / 7);
+}
+#home::-webkit-scrollbar {
+    width: 10px;
+    padding-top: 36px;
+}
+
+#home::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#home::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); 
+}
+#newCont {
+    width: 13rem;
+    height: 13rem;
+    box-sizing: border-box;
+    padding: 20px;
+}
+#newBtn {
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+#newBtn:hover > svg #col1 {
+    fill: rgb(60, 60, 60);
+}
+
+#overlayMenuDisplay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 2;
+}
+
+#createBoardMenu {
+    width: 25rem;
+    height: fit-content;
+    border-radius: 1rem;
+    background-color: rgb(25, 25, 25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: black 10px 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 2.5rem;
+    gap: 2rem;
+}
+
+#nameInput {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    padding-left: 1rem; padding-right: 1rem;
+    font-size: 18px;
+    transition: background-color 200ms;
+    border-radius: 2px;
+    color: rgba(255, 255, 255, 1);
+}
+
+#nameInput:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+#boardCreateMenBtns {
+    height: 38px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.boardCreateMenBtn {
+    width: 96px;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16px;
+    color: white;
+    background: none;
+}
+
+.boardCreateMenBtn[datatype="create"] {
+    background-color: var(--base-purple);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+}
+
+.boardCreateMenBtn[datatype="create"]:hover {
+    background-color: var(--hover-purple);
+    color: rgba(255, 255, 255, 0.5);
+    transition: background 200ms, color 200ms;
+    text-decoration: none;
+}
+
+.boardCreateMenBtn:hover {
+    text-decoration: underline 1px;
+}
+#homeContextOverlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#notePrevMenu {
+    width: 14rem;
+    height: fit-content;
+    position: absolute;
+    background-color: rgb(20, 20, 20);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.564) 6px 6px 4px;
+    pointer-events: all;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.npmBtn {
+    background: none;
+    border: none;
+    height: 2.2rem;
+    width: 100%;
+    border-radius: 5px;
+    text-align: start;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+.npmBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s, color 0.2s;
+    color: white;
+}
+
+.npmBtn[datatype="delete"] {
+    color: rgb(255, 54, 54);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 15px;
+}
+
+.npmBtn[datatype="delete"]:hover {
+    color: white;
+    background-color: rgba(255, 54, 54, 0.75);
+}
