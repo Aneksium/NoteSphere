@@ -4,7 +4,7 @@ import EditorPage from '@/routes/EditorPage/EditorPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
     { path: '/', name: 'Home', component: HomePage },
-    { path: '/edit/:id', name: 'Editor', component: EditorPage }
+    { path: '/edit/:board/:id', name: 'Editor', component: EditorPage }
 ]
 
 const router = createRouter({

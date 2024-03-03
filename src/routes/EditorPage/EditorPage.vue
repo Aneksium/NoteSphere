@@ -22,6 +22,7 @@
 import { defineComponent } from 'vue'
 import MarkovChain from '../../utils/Markov'
 import * as fs from 'fs'
+import boardManager from '@/utils/BoardManager'
 
 export default defineComponent({
     name: 'EditorPage',
@@ -44,8 +45,14 @@ export default defineComponent({
             this.markov.train(this.content)
         },
         saveNote() {
-            try { fs.writeFileSync(`./notes/${this.id}.ns`, `${this.title}\n${this.color}\n${this.content}`, 'utf-8') }
-            catch { console.log('Error occured.') }
+            try {
+                const note = boardManager.boards.get(this.$route.params.board as string)?.notes.get(this.$route.params.id as string)
+                note!.title = this.title
+                note!.content = this.content
+                note!.color = this.color as 'yellow' | 'aqua' | 'pink' | 'green'
+                note!.save()
+            }
+            catch { console.log('TImed out') }
         },
         autoSave() {
             if(this.saveTimeout != null) clearTimeout(this.saveTimeout)
@@ -61,16 +68,11 @@ export default defineComponent({
         color: function() { this.autoSave() }
     },
     mounted() {
-        const data = fs.readFileSync(`./notes/${this.$route.params.id}`, 'utf-8')
-        const formatted = data.split('\n')
-        const title = formatted[0]
-        const color = formatted[1] as 'yellow' | 'aqua' | 'pink' | 'green'
-        const content = formatted.slice(2, formatted.length).join('\n')
-        
-        this.title = title
-        this.color = color
-        this.content = content
-        this.id = this.$route.params.id as string
+        const noteData = boardManager.boards.get(this.$route.params.board as string)?.notes.get(this.$route.params.id as string)
+        this.title = noteData?.title as string
+        this.color = noteData?.color as 'yellow' | 'aqua' | 'pink' | 'green'
+        this.content = noteData?.content as string
+        this.id = noteData?.id as string
     }
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: 'Editor', params: { id: id } }" class="notePrev" :class="{ 
+    <router-link :to="{ name: 'Editor', params: { board: board, id: id } }" class="notePrev" :class="{ 
         yellow: color == 'yellow',
         aqua: color == 'aqua',
         pink: color == 'pink',
@@ -34,6 +34,10 @@ export default defineComponent({
             required: true
         },
         id: {
+            type: String,
+            required: true
+        },
+        board: {
             type: String,
             required: true
         }

@@ -1,3 +1,7 @@
+:root {
+    --base-purple: rgb(173, 74, 219);
+    --hover-purple: rgb(113, 54, 141);
+}
 #navSpace {
     height: 36px;
     width: 100%;
@@ -19,7 +23,7 @@
     box-sizing: border-box;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    gap: 8rem;
+    gap: 1rem;
 }
 #boardMenHead {
     display: flex;
@@ -29,7 +33,7 @@
     height: fit-content;
     width: 100%;
     box-sizing: border-box;
-    padding-left: 1rem; padding-right: 1rem;
+    padding-left: 2rem; padding-right: 2rem;
 }
 .genTitle {
     font-family: 'Inconsolata', monospace;
@@ -38,6 +42,30 @@
     padding-left: 1.5rem;
     user-select: none;
     color: rgba(255, 255, 255, 0.75);
+}
+.genSubTitle {
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+    box-sizing: border-box;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+#newBoardBtn {
+    padding: 0.4rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background: var(--base-purple);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    box-shadow: rgba(0, 0, 0, 0.75) 3px 3px 5px;
+}
+#newBoardBtn:hover {
+    background-color: var(--hover-purple);
+    transition: background 200ms, color 200ms;
+    color: rgba(255, 255, 255, 0.5);
 }
 #boardMenBtnCont {
     height: 100%;
@@ -154,11 +182,11 @@
 }
 
 #boardCreateMenBtns {
-    height: 44px;
+    height: 38px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     box-sizing: border-box;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -167,30 +195,29 @@
 .boardCreateMenBtn {
     width: 96px;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     font-family: 'Inconsolata', monospace;
     font-size: 16px;
-    font-weight: bold;
-    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
+    color: white;
+    background: none;
 }
 
 .boardCreateMenBtn[datatype="create"] {
-    background-color: rgb(70, 255, 70);
-}
-
-.boardCreateMenBtn[datatype="cancel"] {
-    background-color: rgb(255, 70, 70);
+    background-color: var(--base-purple);
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
 }
 
 .boardCreateMenBtn[datatype="create"]:hover {
-    background-color: rgb(41, 159, 41);
+    background-color: var(--hover-purple);
+    color: rgba(255, 255, 255, 0.5);
+    transition: background 200ms, color 200ms;
+    text-decoration: none;
 }
 
-.boardCreateMenBtn[datatype="cancel"]:hover {
-    background-color: rgb(164, 45, 45);
+.boardCreateMenBtn:hover {
+    text-decoration: underline 1px;
 }
-
 #homeContextOverlay {
     position: fixed;
     width: 100vw;

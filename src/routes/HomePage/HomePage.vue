@@ -17,8 +17,8 @@
             <span class="genTitle">Board Name:</span>
             <input id="nameInput" type="text" placeholder="New Board" v-model="overlayMenu.boardCreate.name"/>
             <div id="boardCreateMenBtns">
+                <button class="boardCreateMenBtn" @click="cancelBoardCreate()">Cancel</button>
                 <button class="boardCreateMenBtn" datatype="create" @click="createBoard()">Create</button>
-                <button class="boardCreateMenBtn" datatype="cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -26,8 +26,8 @@
     <div id="homeCont">
         <div id="boardMenu">
             <div id="boardMenHead">
-                <span class="genTitle">My Boards</span>
-                <button @click="showOverlay('boardCreate', true)">+</button>
+                <span class="genSubTitle">My Boards</span>
+                <button id="newBoardBtn" @click="showOverlay('boardCreate', true)">New</button>
             </div>
             <div id="boardMenBtnCont">
                 <button 
@@ -35,7 +35,7 @@
                     v-for="(board, i) in loadedBoards"
                     :key="i"
                     @click="currentBoard = board[0]"
-                    :style="currentBoard == board[0] ? 'background-color: rgba(255, 255, 255, 0.125);' : ''">
+                    :style="currentBoard == board[0] ? 'background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15);' : ''">
                     {{ board[0] }}
                 </button>
             </div>
@@ -48,6 +48,7 @@
             :description="note.content"
             :color="note.color"
             :id="note.id"
+            :board="currentBoard || ''"
             @contextmenu="toggleContextOverlay('notePreview', true, $event, note.id)"
         />
         <div id="newCont">
@@ -114,6 +115,10 @@ export default defineComponent({
             this.loadedBoards = boardManager.boards
             this.showOverlay('boardCreate', false)
             this.currentBoard = this.overlayMenu.boardCreate.name
+            this.overlayMenu.boardCreate.name = ''
+        },
+        cancelBoardCreate() {
+            this.showOverlay('boardCreate', false)
             this.overlayMenu.boardCreate.name = ''
         },
         createNote() {
