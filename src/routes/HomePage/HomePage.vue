@@ -107,7 +107,9 @@ export default defineComponent({
     watch: {
         currentBoard: function() {
             if(this.currentBoard == null) return
+            this.loadedNotes = []
             this.loadedNotes = Array.from(boardManager.boards.get(this.currentBoard)!.notes).map(x => x[1])
+            console.log(boardManager.boards.get(this.currentBoard)!.notes)
         }
     },
     methods: {
@@ -154,12 +156,12 @@ export default defineComponent({
 
         resizeNoteDisplay() {
             // currently fixing
-            const winWidth = remote.getCurrentWindow().getBounds().width
-            const menuWidth = 16*16
-            const noteWidth = 13*16 
-            const contWidth = winWidth - menuWidth - 6*16
-            const noteCount = Math.floor(contWidth / noteWidth)
-            this.homeContainer.gap = (contWidth - noteCount*noteWidth) / (noteCount - 1) - 3
+            // const winWidth = remote.getCurrentWindow().getBounds().width
+            // const menuWidth = 16*16
+            // const noteWidth = 13*16 
+            // const contWidth = winWidth - menuWidth - 6*16
+            // const noteCount = Math.floor(contWidth / noteWidth)
+            // this.homeContainer.gap = (contWidth - noteCount*noteWidth) / (noteCount - 1) - 3
         }
     },
     mounted() {

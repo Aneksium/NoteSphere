@@ -49,18 +49,24 @@ export default defineComponent({
             titleSize: 50
         }
     },
-    mounted() {
-        this.stateTitle = this.title
-        this.stateDesc = this.description
-        if(this.title.length > 25) this.stateTitle = this.title.slice(0, 22).trimEnd() + '...'
-        if(this.description.length > 50) this.stateDesc = this.description.slice(0, 47) + '...'
-        if(this.stateTitle.length > 7) this.titleSize = 50 - (this.stateTitle.length + 7) / 2
-        if(this.stateTitle.length > 20) this.titleSize = 50 - (this.stateTitle.length + 10) / 2
+    mounted() { this.handleFontSize() },
+    watch: {
+        title: function() { this.handleFontSize() },
+        description: function() { this.handleFontSize() }
     },
     methods: {
         openMenu(id: string, e: MouseEvent) {
             console.log(id)
             console.log(e.clientX, e.clientY)
+        },
+        handleFontSize() {
+            this.stateTitle = this.title
+            this.stateDesc = this.description
+            if(this.title.length > 25) this.stateTitle = this.title.slice(0, 22).trimEnd() + '...'
+            if(this.description.length > 50) this.stateDesc = this.description.slice(0, 47) + '...'
+            if(this.stateTitle.length > 7) this.titleSize = 50 - (this.stateTitle.length + 7) / 2
+            if(this.stateTitle.length > 20) this.titleSize = 50 - (this.stateTitle.length + 10) / 2
+            console.log(this.stateTitle)
         }
     }
 })
