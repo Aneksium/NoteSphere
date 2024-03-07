@@ -92,6 +92,7 @@
 }
 #home {
     width: calc(100vw - 16rem);
+    height: fit-content;
     max-height: 100%;
     overflow-y: auto;
     box-sizing: border-box;
@@ -101,7 +102,7 @@
     align-items: flex-start;
     justify-content: stretch;
     flex-wrap: wrap;
-    gap: calc(((100vw - 6rem) - 13*8rem) / 7);
+    gap: calc(((100vw - 16rem) - 13*7rem) / 6);
 }
 #home::-webkit-scrollbar {
     width: 10px;

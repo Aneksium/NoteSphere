@@ -1,7 +1,9 @@
 {
   "name": "notesphere",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "private": true,
+  "description": "Note taking app",
+  "author": { "name": "Aneksium" },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

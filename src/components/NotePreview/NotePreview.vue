@@ -6,8 +6,8 @@
         green: color == 'green'
     }">
 
-        <div class="prevTit" :style="{ fontSize: titleSize + 'px' }">{{ title }}</div>
-        <div class="prevDesc">{{ description }}</div>
+        <div class="prevTit" :style="{ fontSize: titleSize + 'px' }">{{ stateTitle }}</div>
+        <div class="prevDesc">{{ stateDesc }}</div>
     </router-link>
 </template>
 
@@ -23,7 +23,7 @@ export default defineComponent({
     props: {
         title: {
             type: String,
-            required: true
+            required: true,
         },
         description: {
             type: String,
@@ -44,12 +44,18 @@ export default defineComponent({
     },
     data() {
         return {
+            stateTitle: '',
+            stateDesc: '',
             titleSize: 50
         }
     },
     mounted() {
-        if(this.title.length > 7) this.titleSize = 50 - (this.title.length + 7) / 2
-        if(this.title.length > 20) this.titleSize = 50 - (this.title.length + 20) / 2
+        this.stateTitle = this.title
+        this.stateDesc = this.description
+        if(this.title.length > 25) this.stateTitle = this.title.slice(0, 22).trimEnd() + '...'
+        if(this.description.length > 50) this.stateDesc = this.description.slice(0, 47) + '...'
+        if(this.stateTitle.length > 7) this.titleSize = 50 - (this.stateTitle.length + 7) / 2
+        if(this.stateTitle.length > 20) this.titleSize = 50 - (this.stateTitle.length + 10) / 2
     },
     methods: {
         openMenu(id: string, e: MouseEvent) {

@@ -21,7 +21,7 @@ async function createWindow() {
         frame: false,
         minWidth: 832,
         minHeight: 576,
-        icon: 'icon.ico',
+        icon: 'icon.png',
         webPreferences: {
             nodeIntegration: (process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
             contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,

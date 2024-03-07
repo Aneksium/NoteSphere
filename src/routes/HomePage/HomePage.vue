@@ -40,7 +40,7 @@
                 </button>
             </div>
         </div>
-        <div id="home">
+        <div id="home" :style="`gap: ${homeContainer.gap}px`">
         <NotePreviewVue
             v-for="(note, i) in loadedNotes"
             :key="i"
@@ -72,6 +72,7 @@ import { defineComponent } from 'vue'
 import NotePreviewVue from '@/components/NotePreview/NotePreview.vue'
 import boardManager from '@/utils/BoardManager'
 import Note from '@/utils/Note'
+import { remote } from 'electron'
 
 export default defineComponent({
     components: {
@@ -82,6 +83,9 @@ export default defineComponent({
             loadedBoards: new Map(),
             currentBoard: null as null | string,
             loadedNotes: [] as Note[],
+            homeContainer: {
+                gap: 0
+            },
             overlayMenu: {
                 visible: false,
                 boardCreate: {
@@ -149,7 +153,13 @@ export default defineComponent({
         },
 
         resizeNoteDisplay() {
-            console.log('lol') // TODO: handle resize screen
+            // currently fixing
+            const winWidth = remote.getCurrentWindow().getBounds().width
+            const menuWidth = 16*16
+            const noteWidth = 13*16 
+            const contWidth = winWidth - menuWidth - 6*16
+            const noteCount = Math.floor(contWidth / noteWidth)
+            this.homeContainer.gap = (contWidth - noteCount*noteWidth) / (noteCount - 1) - 3
         }
     },
     mounted() {
@@ -158,11 +168,9 @@ export default defineComponent({
         else {
             this.currentBoard = Array.from(boardManager.boards).map(x => x[0])[boardManager.boards.size - 1]
             this.loadedNotes = Array.from(boardManager.boards.get(this.currentBoard)!.notes).map(x => x[1])
-            console.log('a')
-            console.log(this.loadedNotes)
         }
 
-
+        this.resizeNoteDisplay()
         window.addEventListener('resize', this.resizeNoteDisplay)
     }
 })

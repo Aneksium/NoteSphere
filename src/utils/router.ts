@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomePage from '../routes/HomePage/HomePage.vue'
 import EditorPage from '@/routes/EditorPage/EditorPage.vue'
 
@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: process.env.IS_ELECTRON ? createWebHashHistory() : createWebHistory(),
     routes
 })
 
