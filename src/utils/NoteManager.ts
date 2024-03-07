@@ -15,12 +15,12 @@ export default class NoteManager {
         const ids = Array.from(this.notes).map(x =>  parseInt(x[0])).sort((x, y) => x - y)
         const nextId = ids[ids.length - 1] + 1 || 1
         const data = `${Encryptor.encrypt('New Note')}:|:0:|:`
-        fs.writeFileSync(`${this.path}/${nextId}.ns`, data, 'utf-8')
+        fs.writeFileSync(`${this.path}\\${nextId}.ns`, data, 'utf-8')
         return this.loadNotes()
     }
     public deleteNote(id: string) {
         this.notes.delete(id)
-        fs.unlinkSync(`${this.path}/${id}.ns`)
+        fs.unlinkSync(`${this.path}\\${id}.ns`)
         return this.loadNotes()
     }
     constructor(path: string) {

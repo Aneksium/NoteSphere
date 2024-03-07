@@ -56,7 +56,7 @@ export default defineComponent({
         },
         autoSave() {
             if(this.saveTimeout != null) clearTimeout(this.saveTimeout)
-            this.saveTimeout = setTimeout(this.saveNote, 1000)
+            this.saveTimeout = setTimeout(this.saveNote, 750)
         }
     },
     watch: {

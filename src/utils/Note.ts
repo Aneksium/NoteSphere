@@ -23,7 +23,7 @@ export default class Note {
         const colorIndex = ['yellow', 'aqua', 'pink', 'green'].indexOf(this.color)
 
         const data = `${title64}:|:${colorIndex}:|:${cont64}`
-        fs.writeFileSync(`${this.parentPath}/${this.id}.ns`, data, 'utf-8')
+        fs.writeFileSync(`${this.parentPath}\\${this.id}.ns`, data, 'utf-8')
     }
     constructor(parentPath: string, id: string) {
         this.parentPath = parentPath
