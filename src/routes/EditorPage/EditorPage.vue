@@ -21,7 +21,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MarkovChain from '../../utils/Markov'
-import * as fs from 'fs'
 import boardManager from '@/utils/BoardManager'
 
 export default defineComponent({

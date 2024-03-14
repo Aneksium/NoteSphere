@@ -267,3 +267,18 @@
     color: white;
     background-color: rgba(255, 54, 54, 0.75);
 }
+
+#homeText {
+    font-family: 'Inconsolata', monospace;
+    font-size: 40px;
+    width: calc(100vw - 16rem);
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    white-space: pre-wrap
+}

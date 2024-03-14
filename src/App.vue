@@ -1,9 +1,7 @@
 <template>
     <nav>
         <div id="iconCont">
-            <router-link to="/">
-                <img id="icon" src="./assets/NoteSphere.png">
-            </router-link>
+            <img id="icon" src="./assets/NoteSphere.png">
         </div>
         <span id="title">NoteSphere</span>
         <div id="btnCont">

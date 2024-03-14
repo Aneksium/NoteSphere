@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: 'Editor', params: { board: board, id: id } }" class="notePrev" :class="{ 
+    <button @click="openEditor()" class="notePrev" :class="{ 
         yellow: color == 'yellow',
         aqua: color == 'aqua',
         pink: color == 'pink',
@@ -8,7 +8,7 @@
 
         <div class="prevTit" :style="{ fontSize: titleSize + 'px' }">{{ stateTitle }}</div>
         <div class="prevDesc">{{ stateDesc }}</div>
-    </router-link>
+    </button>
 </template>
 
 <style scoped>
@@ -17,6 +17,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { remote } from 'electron'
+import OpenedEditors from '@/utils/OpenedEditors'
 
 export default defineComponent({
     name: "NotePreview",
@@ -55,10 +57,6 @@ export default defineComponent({
         description: function() { this.handleFontSize() }
     },
     methods: {
-        openMenu(id: string, e: MouseEvent) {
-            console.log(id)
-            console.log(e.clientX, e.clientY)
-        },
         handleFontSize() {
             this.stateTitle = this.title
             this.stateDesc = this.description
@@ -67,6 +65,27 @@ export default defineComponent({
             if(this.stateTitle.length > 7) this.titleSize = 50 - (this.stateTitle.length + 7) / 2
             if(this.stateTitle.length > 20) this.titleSize = 50 - (this.stateTitle.length + 10) / 2
             console.log(this.stateTitle)
+        },
+        openEditor() {
+            if(OpenedEditors.includes(`${this.board}/${this.id}`)) return null
+            const modalPath = process.env.NODE_ENV === 'development'
+                ? `http://localhost:8080/#/edit/${this.board}/${this.id}`
+                : `file://${__dirname}/index.html#/edit/${this.board}/${this.id}`
+                let win2 = new remote.BrowserWindow({
+                    width: 500,
+                    height: 500,
+                    frame: false,
+                    minWidth: 500,
+                    minHeight: 500,
+                    icon: 'icon.png',
+                    webPreferences: {
+                        nodeIntegration: true,
+                        contextIsolation: false,
+                        enableRemoteModule: true
+                    }
+                })
+                win2.loadURL(modalPath)
+                OpenedEditors.push(`${this.board}/${this.id}`)
         }
     }
 })
